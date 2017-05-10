@@ -1,56 +1,56 @@
-// Create a VehicleConstructor that takes in the name, number of wheels, and the number of passengers. Then complete the following tasks:
+// // Create a VehicleConstructor that takes in the name, number of wheels, and the number of passengers. 
+// Then complete the following tasks:
+
+
+function VehicleConstructor(name, wheels, passengers){
+  var vehicle = {};
+
+  vehicle.name = name;
+  vehicle.wheels = wheels;
+  vehicle.passengers = passengers;
+
 
 // Each vehicle should have a makeNoise method
-// Using the constructor, create a Bike 
-// Redefine the Bike’s makeNoise method to print “ring ring!” 
-// Create a Sedan 
-// Redefine the Sedan’s makeNoise method to print “Honk Honk!” 
-// Using the constructor, create a Bus 
-// Add a method to Bus that takes in the number of passengers to pick up and adds them to the passenger count​
 
-function VehicleConstructor(name, wheels, passengerNumber){
-  var vehicle = {};
-/*
-  Properties
-*/
-  vehicle.name = name || "unicycle";
-  vehicle.wheels = wheels || 1;
-  vehicle.passengerNumber = passengerNumber || 0;
-  /*
-    methods
-  */
-  vehicle.makeNoise = function(noise){
-    var noise = noise || "Honk Honk";
-    console.log(noise)
+  vehicle.makeNoise = function(){
+    console.log("Making noise!");
   }
-  /*
-  return
-  */
+
   return vehicle;
 }
 
-var unicycle = VehicleConstructor();
+// Using the constructor, create a Bike 
+// Redefine the Bike’s makeNoise method to print “ring ring!” 
 
-var bike = VehicleConstructor("bicycle", 2, 0);
-bike.makeNoise = function(){
-  console.log('ring, ring');
+var Bike = VehicleConstructor('Bike', 2, 1);
+Bike.makeNoise();
+Bike.makeNoise = function() {
+  console.log("Ring ring!")
 }
-// or simply: bike.makenoise("ring, ring");
-var sedan = VehicleConstructor("sedan", 4, 4);
-sedan.makeNoise = function(){
-  console.log('Honk Honk');
+Bike.makeNoise();
+
+// Create a sedan
+// Redefine the Sedan’s makeNoise method to print “Honk Honk!” 
+
+var Sedan = VehicleConstructor('Sedan', 4, 4);
+Sedan.makeNoise();
+Sedan.makeNoise = function(){
+  console.log("Honk Honk");
 }
 
-var bus = VehicleConstructor('bus',6, 0);
-bus.pickupPassengers = function(newPassengers){
-  bus.passengerNumber += newPassengers;
+Sedan.makeNoise();
+
+
+// Using the constructor, create a Bus 
+// Add a method to Bus that takes in the number of passengers to pick up and adds them to the passenger count​
+
+var Bus = VehicleConstructor('Bus', 8, 1);
+Bus.pickUpPassengers = function(passengers) {
+  Bus.passengers += passengers;
 }
-
-console.log(bus.passengerNumber);
-bus.pickupPassengers(6);
-console.log(bus.passengerNumber);
-
-
+console.log(Bus.passengers)
+Bus.pickUpPassengers(14);
+console.log(Bus.passengers)
 
 
 
