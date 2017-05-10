@@ -1,0 +1,24 @@
+* {
+  padding: 10px;
+}
+body {
+  background-color: aqua;
+}
+
+button {
+  background-color: white;
+  height: 25%;
+  width: 25%;
+}
+
+img {
+  height: 300px;
+  width: 50%;
+  margin: 0 auto;
+  border: 2.5px solid white;
+}
+
+h1 {
+  width: 30%;
+  margin: 0 auto;
+}
