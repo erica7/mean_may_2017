@@ -2,3 +2,5 @@ Find all my MEAN assignments here
 =================================
 
 DAY 1 - JSFundamental PARTS 1,2 and 3; Be The Interpreter; Build Some Functions; Creating Objects
+DAY 2 - Javascript Object Oriented Programming
+DAY 3 - Node.js

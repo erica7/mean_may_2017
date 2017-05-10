@@ -1,0 +1,12 @@
+* {
+  padding: 10px;
+}
+body {
+  background-color: aqua;
+}
+
+button {
+  background-color: white;
+  height: 25%;
+  width: 25%;
+}
