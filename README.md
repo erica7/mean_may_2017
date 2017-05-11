@@ -17,6 +17,7 @@ https://codingdojo-dallas.slack.com/files/katemoc/F427ZQZPY/github_workflow_v4.p
 
 # Videos
 [MEAN - Intro to Express](https://youtu.be/4ZO_sndmY-E "MEAN - Intro to Express") <br>
+[MEAN - Socket.IO](https://youtu.be/MVpof70jUIM "MEAN - Socket.IO") <br>
 
 # Schedule
 
