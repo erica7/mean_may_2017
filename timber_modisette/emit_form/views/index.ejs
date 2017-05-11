@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Emit Form</title>
+		<meta charset="utf-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    	<script type ="text/javascript">
+    		$(document).ready(function(){
+    			var socket = io.connect();
+    			$('#button').click(function(e){
+    				e.preventDefault();
+    				socket.emit('posting_form', {
+    					name:$('#name').val(),
+    					location:$('#location').val(),
+    					favourite:$('#favourite').val(),
+    					comment:$('#comment').val()
+    				});
+    				socket.emit('random_number',{reason: 'give me a radonom number'});
+    			});
+
+    			socket.on('server_response', function(data){
+    				
+  	
+    				$('#message').html('<p>Name: '+data.response.name+'</p>'+'<p>Location: ' +data.response.location + '</p>' + '<p>Favourite Language: '+ data.response.favourite+ '</p>' + '<p>Comment: ' + data.response.comment+ '</p>');
+    			});
+
+    			socket.on('random_number', function(data){
+    				$('#number').html("random number is:" + data.response);
+    			});
+    		});
+    	</script>
+	</head>
+	<body>
+		<h1>test</h1>
+		<div id="message"></div>
+		<div id="number"></div>
+		<form id="this_form" action="" method="">
+			<div>
+				<label for="name">Name: <input type="text" name="name" id="name"></label>
+			</div>
+			<div>
+				<label for="location">Location: <input type="text" name="location" id="location"></label>
+			</div>
+			<div>
+				<label for="favourite">Favourite Language: <input type="text" name="favourite" id="favourite"></label>
+			</div>
+			<div>
+				<label for="comment"><textarea name="comment" id="comment"></textarea></label>
+			</div>
+			<div>
+				<input id="button" type="submit" name="form_submit">
+			</div>
+		</form>
+	</body>
+</html>
