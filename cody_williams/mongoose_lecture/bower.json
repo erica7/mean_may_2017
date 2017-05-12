@@ -1,0 +1,17 @@
+{
+  "name": "mongoose_lecture",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "codyw9524 <codyw9524@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
