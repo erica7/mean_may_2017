@@ -86,10 +86,6 @@ var CommentSchema = new mongoose.Schema({
         'type': mongoose.Schema.Types.ObjectId,
         'ref': 'Post'
     }
-    'oneToMany': [{
-        'user': String,
-        'something': Number
-    }]
 }, { 'timestamps': true })
 
 mongoose.model('Comment', CommentSchema);
