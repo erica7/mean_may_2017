@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cat</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>test</h1>
+		<a href="/">Home</a>
+		<% for(i in cat){ %>
+			<p><%= cat[i].name %></p>
+			<a href="/edit/<%= cat[i]._id %>">Edit <%= cat[i].name %></a>
+			<a href="/delete/<%= cat[i]._id %>">Delete <%= cat[i].name %></a>
+		<% } %>
+
+	</body>
+</html>
