@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat Room</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect();
+            var user;
+
+            $("#new-user").click(function(){
+                user = prompt("Please enter your name:")
+                socket.emit("user", {name: user})
+                $('form').append("<input id='post' class='form-control' type='text'>")
+                $('form').append("<input type='submit' id='send' class='btn btn-info' value='Send'>")
+                
+            })
+
+            socket.on('user_info',function(data){
+                console.log(data)
+                 $('#chat-room').append("<h4>"+data.name+" has joined..."+"</h4>")
+                 $('.users').append("<h3>"+data.name+"</h3>")
+                
+            })
+
+            $('form').submit(function(e){
+                console.log($("#post").val())
+                socket.emit("message", {message: $("#post").val(), name:user})
+                e.preventDefault();
+            })
+
+            socket.on('message', function(data){
+                console.log(data)
+                $('#chat-room').append("<h5>"+data.response.name+":"+data.response.message+"</h5>")
+                $('#chat-room').append("<hr>")
+            })
+
+
+
+
+
+            // socket.on('server_response', function (data){
+            //     if(data.message != undefined){
+            //         $('#chat-room').append("<h5>"+data.name+":"+data.message+"</h5>")
+            //         console.log('true')
+            //     }
+            //     console.log(data)
+            //     if(data.name != undefined){                      
+            //         $('.users').append("<h3>"+data.name+"</h3>")                
+            //         $('form').append("<input id='post' class='form-control' type='text'>")
+            //         $('form').append("<input type='submit' class='btn btn-info' value='Send'>")
+            //     }
+
+            // });
+
+
+        
+        })
+        </script>
+
+		<style type="text/css">
+
+            *{
+                margin: 10px;
+                padding: 0px;
+            }
+
+            .container{
+                width: 400px;
+                text-align: center;
+            }
+            .users{
+                outline: 1px solid red;
+                width: 200px;
+                height: 200px;
+                float: right;
+                border: 3px solid black;
+                vertical-align: top;
+                margin-top:5px;
+            }
+
+            #user{
+                width: 100px;
+                height: 100px;
+                /*outline: 1px solid black;*/
+                background-color: yellow;
+            }
+
+            #chat-room{
+                height: 500px;
+                width: 500px;
+                border: 3px solid black;
+                display: inline-block;
+                overflow:scroll
+            }
+            #message{
+                width:500px;
+            }
+            .btn{
+                float: right;
+                margin-top:5px;
+            }
+
+		</style>
+
+	</head>
+
+	<body>
+        <div class="container">
+            <div id="user-add">
+                <button type="button" id="new-user" class="btn btn-primary btn-lg btn-block">Click here to join</button>          
+            </div>
+        </div>
+        <h1>Conversation board:</h1>
+
+        <div id="chat-room">
+            
+        </div>
+
+        <div class="users">
+                
+        </div>
+
+        <div id="message">
+            <form role="form" action="/users" method="post">
+            <!--     <input id="post" type="text" class="form-control" placeholder="Enter your message here">
+                <input type="submit" class="btn btn-info" value="Send"> -->
+            </form>
+        </div>
+
+
+	</body>
+</html>

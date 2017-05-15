@@ -1,0 +1,13 @@
+<html>
+<body>
+    <h2>Submitted Information:</h2>
+    <% for (var i = 0; i < users.length; i++) { %>
+        <h3>Name: <%= users[i].name %></h3>
+        <h4>Email: <%= users[i].email %></h4>
+        <h4>Dojo Location: <%= users[i].location%></h4>
+        <h4>Favorite Language: <%= users[i].language%></h4>
+        <h4>Comment: <%= users[i].comment%></h4>
+        <hr>
+    <% } %>
+</body>
+</html>

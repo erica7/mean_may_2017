@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Mongoose</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Here is all the mongoose</h1>
+			<% for (var i=0;i<mongooses.length;i++) {%>
+				<h2>"<%= mongooses[i].name%>"</h2>
+				<h2>"<%= mongooses[i]._id%>"</h2>
+				<a href="/mongoose/<%= mongooses[i]._id %>">Want to know about mongoose</a>
+				<a href="/mongooses/edit/<%= mongooses[i]._id %>">Edit this mongoose</a>
+				<a href="/mongooses/destroy/<%= mongooses[i]._id %>">Delete the mongoose</a>
+			<hr>
+			<% } %>
+			<a href="/mongooses/new">make a new mongoose</a>
+		</div>
+
+	</body>
+</html>
