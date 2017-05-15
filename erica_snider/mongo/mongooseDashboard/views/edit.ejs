@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Mongoose</title>
+  </head>
+  <body>
+    <h1>Edit Mongoose</h1>
+    <form action="/mongooses/<%= mongoose_id %>" method="post">
+      <input type="hidden" name="id" value="<%= mongoose_id %>">
+      <label for="name">Name: <input type="text" name="name"></label>
+      <br/>
+      <label for="age">Age: <input type="text" name="age"></label>
+      <br/>
+      <label for="eye_color">Eye Color: <input type="text" name="eye_color"></label>
+      <br/>
+      <input type="submit" value="Update mongoose">
+    </form>
+    <a href="/">Home</a>
+  </body>
+</html>

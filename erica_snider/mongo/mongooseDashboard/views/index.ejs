@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mongeese</title>
+  </head>
+  <body>
+    <h1>Hello mongeese!</h1>
+    <% if (mongeese){ %>
+      <% if (mongeese.length > 0){ %>
+        <%= mongeese %>
+        <% for (var i=0; i<mongeese.length; i++){ %>
+          <ul>
+            <li><%= mongeese[i].name %></li>
+            <li><%= mongeese[i].age %></li>
+            <li><%= mongeese[i].eye_color %></li>
+            <li><a href="/mongooses/edit/<%= mongeese[i]._id %>">Edit</a></li>
+            <!-- <li><a href="/mongooses/destroy/<%= mongeese[i]._id %>" data-method="destroy">Delete</a></li> -->
+            <form action="/mongooses/destroy/<%= mongeese[i]._id %>" method="post">
+              <input type="submit" value="Delete">
+            </form>
+          </ul>
+        <% } %>
+
+      <% } else { %>
+        <h4>no mongeese here...</h4>
+      <% } %>
+    <% } %>
+    <a href="/mongooses/new">New</a>
+  </body>
+</html>
