@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mongoose practice1</title>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+		
+		</script>
+	</head>
+	<body>
+		<form action="/users" method="post">
+			<label for="name">Name: <input type="text" name="name"></label>
+			<label for="age">Age: <input type="number" name="age"></label>
+			<input type="submit" name="form_submit">
+		</form>
+		<% if(typeof(errors) != 'undefined' ) { %>
+        	<h3><%= errors.name %></h3>
+        	<h3><%= errors.age %></h3>
+    	<% } %>
+
+    
+	</body>
+</html>
