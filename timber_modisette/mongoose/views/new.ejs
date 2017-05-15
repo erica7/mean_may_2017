@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Add New Cat</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Add new cat</h1>
+		<a href="/">home</a>
+		<form action="/addcat" method="post">
+			<label for="name">Name: <input type="text" name="name"></label>
+			<input type="submit" name="new_cat_button">
+		</form>	
+		<% if(typeof(errors) != 'undefined'){ %>
+			<h3><%= errors.name%></h3>
+		<% } %>
+	</body>
+</html>

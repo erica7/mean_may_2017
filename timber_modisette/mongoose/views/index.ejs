@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cats</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>Test</h1>
+		<a href="/new">Add new cat</a><br>
+		<% for(i in cats){ %>
+			<a href="/cat/<%= cats[i]._id %>"><%= cats[i].name %></a><br>
+		<% } %>
+	</body>
+</html>
+
