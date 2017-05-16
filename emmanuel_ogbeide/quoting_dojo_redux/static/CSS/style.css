@@ -1,0 +1,19 @@
+div {
+  background-color: lavenderblush;
+  padding: 10px;
+}
+
+.btn-default {
+  color: white;
+  box-shadow: 5px 5px 5px black;
+}
+.btn {
+  color: white;
+}
+select {
+  display: block
+}
+
+.default {
+  background-color: transparent;
+}

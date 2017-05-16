@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>A Web Page</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="center-block">
+          <h1>The Dojo Message Board</h1><hr>
+          <form action="/posts" method="post">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" name="name" style="width:200px">
+            </div>
+            <div class="form-group">
+              <label for="quote">Message:</label>
+              <textarea name="message" class="form-control" rows="8" cols="80"></textarea>
+            </div>
+            <input type="submit" class="btn btn-default" value="Post message" style="float:right">
+          </form>
+        </div>
+        <div class="center-block">
+          <% for (post in posts) { %>
+          <h5><b>Name : <%= posts[post].name %><% console.log(posts[post].name) %></b></h5>
+          <h5><b>Message: <%= posts[post].message%></b></h5>
+          <div style="margin-left:30px">
+            <% for (var i = 0; i < posts[post].comments.length; i++) { %>
+              <p>Name: <%= posts[post].comments[i].name %> </p>
+              <p>Comment: <%= posts[post].comments[i].text %></p>
+            <% } %>
+              <form action="/posts/<%= posts[post]._id %>" method="post">
+                <div class="form-group">
+                  <label for="name">Name:</label>
+                  <input type="text" class="form-control" name="name" style="width:200px">
+                </div>
+                <div class="form-group">
+                  <label for="quote">Comment:</label>
+                  <textarea name="text" class="form-control" rows="8" cols="80"></textarea>
+                </div>
+                <input type="submit" class="btn btn-default" value="Post comment" style="float:right">
+              </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>QuotingDojo</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="center-block">
+          <% if(typeof(errors) != 'undefined' ) { %>
+             <% for (var x in errors) { %>
+              <h5><%= errors[x].message %></h5>
+             <% } %>
+          <% } %>
+        </div>
+        <a href="/" class="btn btn-default center-block">Go Back</a>
+      </div>
+    </div>
+  </body>
+</html>
