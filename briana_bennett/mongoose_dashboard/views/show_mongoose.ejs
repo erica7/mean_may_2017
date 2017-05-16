@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mongoose/:id</title>
+</head>
+<body>
+show info about one mongoose
+		<h3><%= mongoose.name %></h3>
+		<p>Age: <%= mongoose.age %></p>
+		<p>Favorite Food: <%= mongoose.favorite_food %></p>
+		<a href="/mongooses/edit/<%= mongoose._id %>">edit this mongoose</a>
+		<form action="/mongooses/destroy/<%= mongoose._id %>" method="post">
+			<input type="submit" value="bye felicia">
+		</form>
+</body>
+</html>

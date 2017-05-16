@@ -1,0 +1,17 @@
+{
+  "name": "mongoose_dashboard",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Briana Bennett <bri.bennett89@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bribenn/mean_may_2017",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

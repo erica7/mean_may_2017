@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mongooses</title>
+</head>
+<body>
+	<h1>Your Mongooses:</h1>
+	<!-- display some mongooses -->
+	<% for(i=0; i < mongooses.length; i++){ %>
+		<a href="/mongooses/<%= mongooses[i]._id %>" ><h3><%= mongooses[i].name %></h3></a>
+		<a href="/mongooses/edit/<%= mongooses[i]._id %>" >edit this mongoose</a>
+		<form action="/mongooses/destroy/<%= mongooses[i]._id %>" method="post">
+			<input type="submit" value="bye felicia">
+		</form>
+	<% } %>
+	<a href="/mongooses/new" method='get'>add a mongoose.</a>
+</body>
+</html>
