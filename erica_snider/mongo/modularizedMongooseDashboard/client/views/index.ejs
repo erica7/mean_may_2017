@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mongeese</title>
+  </head>
+  <body>
+    <h1>Hello mongeese!</h1>
+    <% if (animals){ %>
+      <% if (animals.length > 0){ %>
+        <%= animals %>
+        <% for (var i=0; i<animals.length; i++){ %>
+          <ul>
+            <li><%= animals[i].name %></li>
+            <li><%= animals[i].age %></li>
+            <li><%= animals[i].eye_color %></li>
+            <li><a href="/animals/edit/<%= animals[i]._id %>">Edit</a></li>
+            <form action="/animals/destroy/<%= animals[i]._id %>" method="post">
+              <input type="submit" value="Delete">
+            </form>
+          </ul>
+        <% } %>
+
+      <% } else { %>
+        <h4>no animals here...</h4>
+      <% } %>
+    <% } %>
+    <a href="/animals/new">New</a>
+  </body>
+</html>

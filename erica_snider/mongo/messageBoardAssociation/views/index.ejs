@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Board with Schema Associations</title>
+  </head>
+  <body>
+    <h1>The Dojo Message Board with Schema Associations</h1>
+    <form action="/messages" method="post">
+      <label for="name">Name: <input type="text" name="name"></label>
+      <br/>
+      <label for="message">Message: <textarea name="message" rows="4" cols="50"></textarea></label>
+      <br/>
+      <input type="submit" value="Post Message">
+    </form>
+
+    <% for(var i=0; i<messages.length; i++){ %>
+      <ul>
+        <li>Name: <%= messages[i].name %></li>
+        <li>Message: <%= messages[i].message %></li>
+
+        <% for(var j=0; j<messages[i].comments.length; j++){ %>
+          <ul>
+            <li>Name: <%= messages[i].comments[j].name %></li>
+            <li>Comment: <%= messages[i].comments[j].comment %></li>
+          </ul>
+        <% } %>
+
+        <form action="/messages/<%= messages[i]._id %>/comments" method="post">
+          <label for="name">Name: <input type="text" name="name"></label>
+          <br/>
+          <label for="comment">Comment: <textarea name="comment" rows="3" cols="40"></textarea></label>
+          <br/>
+          <input type="submit" value="Post Comment">
+        </form>
+      </ul>
+    <% } %>
+  </body>
+</html>
