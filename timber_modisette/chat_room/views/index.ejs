@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Group chat</title>
+		<meta charset="utf-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	<script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    	<style type="text/css">
+    		#message {
+    			border:2px solid black;
+    			width: 500px;
+    			height: 500px;
+    			overflow: scroll;
+    		}
+    	</style>
+    	<script type ="text/javascript">
+
+    		$(document).ready(function(){
+    			var socket = io.connect();
+    			var name;
+    			$('#button').click(function(){
+    				name = prompt('Enter your name');
+    				var userSocket = socket.id;
+
+    				socket.emit('user', {data:name,socketid:userSocket});
+    				
+    				console.log(userSocket);
+    			});
+
+    			socket.on('server_response', function(data){
+    				console.log(data);
+    				$('#message').append('<p>'+data.response.data+' has joined the chat room.</p><hr>')
+    				// $('#formBox').append("<form><input type='text'><input type='submit' id='message_button'></form>");
+    			});
+
+    			$('#user_message_button').click(function(){
+    				var data = $('#text').val();
+    				socket.emit('messages', {data:data, name:name});
+    				console.log(data);
+    			});
+
+    			socket.on('messages_response', function(data){
+    				console.log(data);
+    				$('#message').append('<p>'+data.response.name+ ': ' +data.response.data+'</p>')
+    			});
+
+  	
+    	
+
+
+    		});
+    	</script>
+	</head>
+	<body>
+		<button id='button' >Enter</button>
+		<div id="message"></div>
+		<div id="formBox">
+			<textarea id="text"></textarea>
+			<button id="user_message_button">send message</button>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Edit Cat</title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<% for(i in cat){%>
+			<h1>Edit <%= cat[0].name %></h1>
+
+
+		<form action="/editcat/<%= cat[0]._id %>" method="post">
+			<label for="change_name">Change name to: <input type="text" name="change_name"></label>
+			<input type="submit" name="change_name_button">
+		</form>
+		<% } %>
+	</body>
+</html>
