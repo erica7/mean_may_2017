@@ -1,0 +1,18 @@
+* {
+  font-family: sans-serif;
+}
+
+form{
+	border: 1px solid black;
+	width: 500px;
+	height: 300px;
+}
+
+.label{
+	font: italic; 
+}
+
+.input{
+	display: inline-block;
+	float: right;
+}
