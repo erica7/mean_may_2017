@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sockets</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+    $(document).ready(function(){
+      // this triggers the connection even in our server
+      var socket = io.connect();
+      // we'll write all the socket stuff after that first line
+      $('button').click(function(){
+        // var information = $('form').serializeArray();
+        var information = {
+          name: $('#name').val(),
+          location: $('#location').val(),
+          language: $('#language').val(),
+          comment: $('#comment').val(),
+        };
+        console.log(information);
+        socket.emit("button_clicked", {information: information});
+      });
+      socket.on('server_response', function(data){
+        console.log('The location info back from the server: ' + data.response.location);
+        $('#data').html(data.response.name + " " + data.response.location + " " + data.response.language + " " + data.response.comment);
+      })
+    })
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to Sockets</h1>
+    <!-- <button type="button" name="button">I Am A Button</button> -->
+    <h1>Your information</h1>
+    <div id='data'></div>
+    <h1>Survey</h1>
+    <form action="/users" method="post">
+      <label for="name">Name: <input id="name" type="text" name="name"></label>
+      <br/>
+      <label for="location">Location: </label>
+      <select id="location" name="location">
+        <option value="Mountain View">Mountain View</option>
+        <option value="Seattle">Seattle</option>
+        <option value="Dallas">Dallas</option>
+      </select>
+      <br/>
+      <labelfor="language">Favorite Language: </label>
+      <select id="language" name="language">
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+        <option value="Ruby">Ruby</option>
+      </select>
+      <br/>
+      <label for="comment">Comment (optional):</label>
+      <textarea id="comment" name="comment" rows="8" cols="80"></textarea>
+      <br/>
+      <!-- <input type="submit" value="Submit"> -->
+    </form>
+    <button type="button" name="button">I Am A Button</button>
+  </body>
+</html>

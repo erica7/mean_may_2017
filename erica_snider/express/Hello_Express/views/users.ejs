@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users</title>
+  </head>
+  <body>
+    <h2>Here are all the users:</h2>
+    <% for(var i=0; i<users.length; i++) { %>
+      <h3>Name: <%= users[i].name %></h3>
+      <h3>Email: <%= users[i].email %></h3>
+      <hr/>
+    <% } %>
+  </body>
+</html>
