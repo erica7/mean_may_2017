@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<title>Controllers</title>
+		<meta charset="utf-8">
+		<script src='../bower_components/angular/angular.js'></script>
+		<script type="text/javascript">
+			var myAppModule = angular.module('myApp', []);
+			myAppModule.controller('studentsController', function($scope){
+				$scope.students =[
+					{name:'mike',age:23},
+					{name:'piff',age:26},
+					{name:'monic',age:31},
+					{name:'eila',age:5}
+				];
+				$scope.addStudent = function(){
+					$scope.students.push($scope.newStudent);
+					$scope.newStudent = {};
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div ng-controller='studentsController'>
+			<ul>
+				<li ng-repeat="x in students">{{x.name}}, {{x.age}}</li>
+			</ul>
+			<h3>Add a new student</h3>
+			<form>
+				<label for="name">Name: <input type="text" ng-model="newStudent.name"></label>
+				<label for="age">Age: <input type="number" ng-model="newStudent.age"></label>
+				<input type="submit" value="Add a New Student" ng-click='addStudent()'>
+			</form>
+		</div>
+	</body>
+</html>
+
+
+
+ 
