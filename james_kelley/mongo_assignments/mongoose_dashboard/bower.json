@@ -1,0 +1,20 @@
+{
+  "name": "mongoose_dashboard",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "James_Kelley <jkgda@aim.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "^3.2.1"
+  }
+}
