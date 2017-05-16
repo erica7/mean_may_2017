@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>quotes</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="center-block">
+          <form action="/quotes" method="post">
+            <div class="form-group">
+              <label for="name">Your name:</label>
+              <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+              <label for="quote">Your quote:</label>
+              <textarea name="quote" class="form-control" rows="8" cols="80"></textarea>
+            </div>
+            <input type="submit" class="btn btn-default" value="Add my quote!" style="float:left">
+            <a href="/quotes" class="btn btn-default" style="float:right">Skip to quotes!</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

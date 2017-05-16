@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>Users</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="center-block">
+          <% if(typeof(errors) != 'undefined' ) { %>
+             <% for (var x in errors) { %>
+              <h3><%= errors[x].message %></h3>
+             <% } %>
+           <% } %>
+          <form action="/users" method="post">
+            <div class="form-group">
+              <label for="first_name">First Name:</label>
+              <input type="text" class="form-control" name="first_name">
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name:</label>
+              <input type="text" class="form-control" name="last_name">
+            </div>
+            <div class="form-group">
+              <label for="name">Age:</label>
+              <input type="number" class="form-control" name="age">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <input type="submit" class="btn btn-default center-block" value="Submit">
+          </form>
+        </div>
+        <% if (users.length != 0){ %>
+        <div class="center-block" style="background-color:aqua; border-radius:8px;">
+          <h2>Here are all the users:</h2>
+          <% for (var i = 0; i < users.length; i++) { %>
+            <div class="col-xs-3 default">
+              <p>Name:</p>
+              <p>Age:</p>
+            </div>
+            <div class="col-xs-9 default">
+              <p><%= users[i].name %></p>
+              <p><%= users[i].age %></p>
+            </div>
+            <a href="/users/<%= i %>" class="btn btn-default">View Profile</a>
+            <hr>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
