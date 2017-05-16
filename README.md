@@ -16,6 +16,9 @@ Please commit daily. That way we can provide you with feedback :) or just a thum
 https://codingdojo-dallas.slack.com/files/katemoc/F427ZQZPY/github_workflow_v4.pdf
 
 # Videos
+[MEAN - Intro to Express](https://youtu.be/4ZO_sndmY-E "MEAN - Intro to Express") <br>
+[MEAN - Socket.IO](https://youtu.be/MVpof70jUIM "MEAN - Socket.IO") <br>
+[MEAN - MongoDB & Mongoose ORM](https://youtu.be/ZKiclzvcOrk "MEAN - MongoDB & Mongoose ORM") <br>
 
 # Schedule
 

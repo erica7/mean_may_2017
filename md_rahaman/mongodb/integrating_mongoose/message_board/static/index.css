@@ -1,0 +1,33 @@
+body{
+	background-color: #000000;
+	color: white;
+}
+
+.comments{
+	margin-left: 100px;
+}
+
+textarea{
+	 background-color:#A9A9A9 !important;
+	 color: white !important;
+}
+#user{
+	background-color:#A9A9A9 !important;
+	color: white !important;
+}
+h1,h2{
+	font-family: 'Volkhov', serif;
+	font-weight: normal;
+	color: #FFEBCD;
+}
+h3{
+	font-family: 'Lusitana', serif;
+	color: #FFEBCD;
+}
+h4{
+	font-family: 'Annie Use Your Telescope', cursive;
+	color: #FFA07A;
+}
+.label-text{
+	color: #CD5C5C !important;
+}

@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>1955 apis with ajax</title>
+		 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
+        
+	</head>
+
+	<body>
+        <h1>1955 Apis</h1>
+        
+        <script type="text/javascript">
+            // console.log('test')
+            // $.ajax({
+            //     url: 'http://localhost:8000/', 
+            //     success: function(res){
+            //         console.log(res)
+            //     },
+            //     dataType: 'json'
+            // });
+			$.ajax({
+				url:'http://localhost:8000/',
+				type: 'GET',
+				crossDomain: true,
+				dataType: 'jsonp',
+				success: function(){
+					alert("success")
+				},
+				error: function(){
+					alert('Failed')
+				},
+			})
+		</script>
+        
+		
+
+
+	</body>
+</html>

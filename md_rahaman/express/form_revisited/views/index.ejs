@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Epic button game</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script type ="text/javascript">
+        $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket = io.connect();
+            // we'll write all the socket stuff after the above line!
+            $('form').submit(function(e){
+                socket.emit("posting_form", {reason: $('form').serializeArray()})
+                e.preventDefault();
+            })
+
+            socket.on('server_response', function (data){
+                console.log(data['response'].reason)
+                for(var i=0; i<data.response.reason.length;i++){
+                    console.log(data.response.reason[i].name+' : '+data.response.reason[i].value)
+                    $( "#emit-data" ).append("<h1>"+data.response.reason[i].name+":"+data.response.reason[i].value+"</h1>");
+                }
+            });
+
+            socket.on('random_num', function(data){
+                $( "#emit-data" ).append("<h1>"+"Your lucky number is : "+data['response']+"</h1>")
+            })
+        })
+        </script>
+
+		<style type="text/css">
+			.container{
+				width: 500px;
+				padding: 10px;
+				border: 2px solid yellow;
+			}
+            #emit-data{
+                text-align: center;
+                color: green;
+            }
+		</style>
+
+	</head>
+
+	<body>
+        <div id="emit-data">
+            
+        </div>
+
+		<div class="container">
+	
+    <form role="form" action="users" method="post">
+    <div class="form-group">
+        <label for="c-form-name">
+            <span class="label-text">Name:</span> 
+            <span class="contact-error"></span>
+        </label>
+        <input type="text" name="name" placeholder="Your name..." class="c-form-name form-control" id="c-form-name">
+    </div>
+    <div class="form-group">
+        <label for="c-form-email">
+            <span class="label-text">Email:</span> 
+            <span class="contact-error"></span>
+        </label>
+        <input type="text" name="email" placeholder="Your email address..." class="c-form-email form-control" id="c-form-email">
+    </div>
+    <div class="form-group">
+        <label for="c-form-profession">
+            <span class="label-text">Location:</span> 
+            <span class="contact-error"></span>
+        </label>
+        <select name="location" class="c-form-profession form-control" id="c-form-profession">
+            <option value="Dallas">Dallas</option>
+            <option value="Mountain View">Mountain View</option>
+            <option value="Seattle">Seattle</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="c-form-fav-lang">
+            <span class="label-text">Favorite Language:</span> 
+            <span class="contact-error"></span>
+        </label>
+        <select name="language" class="c-form-fav-lang form-control" id="c-form-fav-lang">
+            <option value="Python">Python</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Ruby">Ruby</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="c-form-message">
+            <span class="label-text">Comment (optional):</span> 
+            <span class="contact-error"></span>
+        </label>
+        <textarea name="comment" placeholder="Comment text..." class="c-form-message form-control" id="c-form-message"></textarea>
+    </div>
+    <input type="submit" class="btn" value="Comment">
+</form>
+</div>
+
+</form>
+			
+		</div>
+
+
+	</body>
+</html>

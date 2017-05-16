@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>survey form</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            var socket = io.connect();
+            $('form').submit(function(){
+            	// $('form')
+            	socket.emit('posting_form', $(this).serializeArray())
+            	return false;
+            })
+            socket.on('updated_message', function(form_data){
+            	console.log(form_data)
+            	//show this in html
+            })
+            socket.on('random_number', function(random){
+            	console.log(random)
+            	//show this in html
+            });
+		});
+    </script>
+</head>
+<body>
+	<form action="/" method="post">
+		<label>Name:</label>
+		<input type="text" name="name">	
+		<label>Dojo Location:</label>
+		<input type="text" name="dojo_location">
+		<label>Favorite Language:</label>
+		<select name="favorite_language">
+			<option value="javascript">Javascript</option>
+			<option value="python">Python</option>
+			<option value="Ruby">Ruby</option>
+		</select>
+		<label>Comment(optional)</label>
+		<textarea name="comment"></textarea>
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

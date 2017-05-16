@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quoting Dojo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	</head>
+
+	<body>
+
+
+		<div class="container">
+            <h1>Here are the awesome quotes!</h1>
+            <% for (var i = 0; i < quotes.length; i++) { %>
+            	<h2>"<%= quotes[i].quote %>"</h2>
+        		<h3>-<%= quotes[i].name %></h3>
+        		<h3><%= quotes[i].updatedAt %></h3>
+                <h3><%= quotes[i].likes %></h3>
+                <a href="/likes/<%= quotes[i]._id %>" class="btn btn-primary btn-info" role="button">Likes</a>
+        	<hr>
+    		<% } %>
+	
+           <a href="/" class="btn btn-primary btn-lg" role="button">Add quotes</a>
+
+        <div>
+        <!-- container div end -->
+
+
+	</body>
+</html>

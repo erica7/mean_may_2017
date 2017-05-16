@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quoting Dojo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	</head>
+
+	<body>
+
+
+		<div class="container">
+            <div id="error">
+                 <% if(typeof(errors) != 'undefined' ) { %>
+                    <% for (var x in errors) { %>
+                    <h3><%= errors[x].message %></h3>
+                    <% } %>
+                <% } %>
+                
+            </div>
+            <h1>Welcome to Quoting Dojo</h1>
+	
+            <form role="form" action="/post" method="post">
+                <div class="form-group">
+                    <label for="name">
+                        <span class="label-text">Name:</span> 
+                    </label>
+                    <input type="text" name="name" placeholder="Your name..." class="name form-control" id="name">
+                </div>
+
+                 <div class="form-group">
+                    <label for="quote">
+                        <span class="label-text">Your quote:</span> 
+                    </label>
+                    <textarea class="quote form-control" id="quote" name="quote" rows="3"></textarea>
+                    
+                </div>
+
+                <input type="submit" class="btn btn-lg" value="Add my quotes">
+            </form>
+           <a href="/quotes" class="btn btn-primary btn-lg" role="button">Skip to quotes</a>
+
+        <div>
+        <!-- container div end -->
+
+
+	</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Message Board</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <link href="https://fonts.googleapis.com/css?family=Volkhov" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lusitana" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+
+		<div class="container">
+            <h1>The Dojo message board</h1><hr>
+            <div id="error">
+                 <% if(typeof(errors) != 'undefined' ) { %>
+                    <% for (var x in errors) { %>
+                    <h3><%= errors[x].message %></h3>
+                    <% } %>
+                <% } %>
+	
+            <form role="form" action="/messages" method="post">
+                <div class="form-group">
+                    <label for="user">
+                        <span class="label-text">Name:</span> 
+                    </label>
+                    <input type="text" name="user" placeholder="Your name..." class="user form-control" id="user">
+                </div>
+
+                 <div class="form-group">
+                    <label for="body">
+                        <span class="label-text">Message:</span> 
+                    </label>
+                    <textarea class="body form-control" id="body" name="body" rows="3"></textarea>
+                    
+                </div>
+
+                <input type="submit" class="btn btn-lg btn-primary" value="Post a message">
+            </form>
+
+            <div>
+
+                <h2>Messages</h2>
+                <hr>
+                <% for(var i=0; i<messages.length; i++) {%>
+                    <div>
+                        <h3>Name : <%= messages[i].user %></h3>
+                        <h3>Message : <%= messages[i].body %> </h3>
+                    </div>
+                    <div class="comments">
+                        <% for(var j=0; j<messages[i].comments.length; j++) {%>
+                            <% var comment = messages[i].comments[j] %>
+                            <h4>Name : <%= comment.user%></h4>
+                            <h4>Comment : <%= comment.comment%></h4>
+                            <hr>
+                        <% } %>
+                    </div>
+
+                    <div class="comments">
+                        <form role="form" action="/comments/<%=messages[i]._id %>" method="post">
+                            <div class="form-group">
+                                <label for="user">
+                                    <span class="label-text">Name:</span> 
+                                </label>
+                                <input type="text" name="user" placeholder="Your name..." class="user form-control" id="user">
+                            </div>
+
+                             <div class="form-group">
+                                <label for="comment">
+                                    <span class="label-text">Comment:</span> 
+                                </label>
+                                <textarea class="comment form-control" id="comment" name="comment" rows="3"></textarea>
+                                
+                            </div>
+
+                            <input type="submit" class="btn btn-lg btn btn-info" value="Post comment">
+                        </form>
+                    <hr>
+                    </div>
+                <% } %>
+
+
+            </div>
+
+        <div>
+        <!-- container div end -->
+
+
+	</body>
+</html>
