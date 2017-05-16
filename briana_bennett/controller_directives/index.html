@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Controller and Directives</title>
+	<script src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body ng-controller = "foodsController">
+	<form>
+		Favorite Food:<input type="text" ng-model="newFood.name">
+		<input type="submit" value="Add Food" ng-click="addFood()">
+	</form>
+	<label>Search: <input ng-model="searchFood"></label>
+	<ul>
+        <li ng-repeat="food in foods | filter:searchFood">{{ food.name }}</li>
+    </ul>
+    Currently Typing: {{newFood.name}}
+</body>
+</html>
