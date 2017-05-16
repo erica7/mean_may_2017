@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h2>Here are all the users:</h2>
+      <% for (var i = 0; i < users.length; i++) { %>
+          <h3>Name: <%= users[i].name %></h3>
+          <h4>Email: <%= users[i].email %></h4>
+          <a href="/users/<%= i %>" class="btn btn-default">View Profile</a>
+          <hr>
+      <% } %>
+    </div>
+  </body>
+</html>
