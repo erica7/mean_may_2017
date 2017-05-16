@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Controlling users</title>
+		<meta charset="utf-8">
+		<script src="../bower_components/angular/angular.js"></script>
+		<style type="text/css">
+			th {
+				border: 1px solid black;
+			}
+			td {
+				border: 1px solid black;
+			}
+		</style>
+		<script type="text/javascript">
+			var myApp = angular.module('myApp', []);
+			myApp.controller('nameController', ['$scope', function($scope){
+				
+				
+				$scope.users = [];
+				$scope.addUser = function(){
+					$scope.users.push($scope.user);
+					$scope.user = {}
+
+				}
+				$scope.deleteUser = function(user){
+					var temp = $scope.users.indexOf(user)
+					$scope.users.splice(temp,1)
+				}
+
+			}]);
+		</script>
+	</head>
+	<body ng-app='myApp'>
+		<div ng-controller='nameController'>
+			<h3>Add a User</h3>
+			<form ng-submit='addUser()'>
+				<label for="Firstname">First Name: <input type="text" ng-model='user.first_name'></label>
+				<label for="Lastname">Last Name: <input type="text" ng-model='user.last_name'></label>
+				<label for="FavLang">Favourite language: <input type="text" ng-model='user.favouriteLanguage'></label>
+				<input type="submit" name="add user">
+			</form>
+				<div>
+					<h4>Search User</h4><input type="text" ng-model='search'>
+				</div>
+			<table>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Favourite Language</th>
+				</tr>
+				<tr ng-repeat='user in users | filter:search'>
+					<td>{{user.first_name}}</td>
+					<td>{{user.last_name}}</td>
+					<td>{{user.favouriteLanguage}}</td>
+					<td><button ng-click="deleteUser(user)">Delete User</button></td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>
