@@ -1,0 +1,17 @@
+mongo
+show dbs
+use my_first_db
+db.save
+db.createCollection("students")
+show collections
+db.students.insert({name: "Erica", home_state: "SC", lucky_number: 21, birthday: {month: 01, day: 01, year: 1921}})
+db.students.insert({name: "Caroline", home_state: "TX", lucky_number: 929, birthday: {month: 09, day: 29, year: 1931}})
+db.students.insert({name: "Lloyd", home_state: "TX", lucky_number: 9, birthday: {month: 07, day: 21, year: 1941}})
+db.students.insert({name: "Scott", home_state: "WI", lucky_number: 100, birthday: {month: 05, day: 30, year: 1951}})
+db.students.insert({name: "Casey", home_state: "OK", lucky_number: 1, birthday: {month: 07, day: 04, year: 1961}})
+db.students.find().pretty()
+db.students.find({home_state: {$in: ["SC", "WI"]}})
+db.students.find({lucky_number: {$gt: 3}})
+db.students.find({lucky_number: {$lte: 10}})
+db.students.find( { $and: [ {lucky_number: {$gte: 1}}, {lucky_number: {$lte: 9}}] } )
+db.students.updateMany({}, {$set: {interests: ['coding', 'brunch', 'MongoDB']}})
