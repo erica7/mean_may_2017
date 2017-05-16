@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>First Angular Page</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+      var myAppModule = angular.module('myApp', []);
+      console.log(myAppModule);
+      myAppModule.controller('myController', function($scope) {
+        // javascript that controls the view goes here:
+        $scope.myName = 'my name';
+        $scope.myFavoriteLanguage = 'JavaScript';
+        $scope.myFavoriteJSLibrary = 'Angular';
+      });
+    </script>
+  </head>
+  <body ng-init="dojo = 'ninja'" ng-controller='myController'>
+    <h1>{{ dojo }}</h1>
+    <h3>{{ 49567 * 2243 }} </h3>
+    <h3 ng-bind='49567 * 2243'></h3>
+    <h3>{{ myName }}</h3>
+    <h3>{{ myFavoriteLanguage }}</h3>
+    <h3>{{ myFavoriteJSLibrary }}</h3>
+    <h3>Hi, my name is {{ myName }}, my favorite language is {{ myFavoriteLanguage }}, and my favorite JavaScript library is {{ myFavoriteJSLibrary }}.</h3>
+  </body>
+</html>

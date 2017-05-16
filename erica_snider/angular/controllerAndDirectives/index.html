@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Controller and Directives</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+      var appModule = angular.module('myApp', []);
+      appModule.controller('myController', function(){
+        this.food = [];
+        this.addFood = function(){
+          this.food.push(this.newFood);
+          this.newFood = "";
+        };
+      });
+    </script>
+  </head>
+  <body ng-controller="myController as mC">
+    <form>
+      Favorite food <input type="text" ng-model='mC.newFood'>
+      <input type="submit" value="Add Food" ng-click="mC.addFood()">
+    </form>
+    <br>
+    <br>
+
+    Currently typing
+    <span ng-if="mC.newFood" ng-bind="mC.newFood"></span>
+    <br>
+    <br>
+
+    <form>
+      Filter <input type="text" value="filter..." ng-model='mC.filter'>
+    </form>
+    <ul>
+      <li ng-repeat="each in mC.food | filter: mC.filter track by $index">{{ each }}</li>
+    </ul>
+  </body>
+</html>

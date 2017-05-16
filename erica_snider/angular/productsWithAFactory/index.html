@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app='myFactoryApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Products with a Factory</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+
+      var appModule = angular.module('myFactoryApp', []);
+
+      appModule.factory('productFactory', function(){
+        var factory = {};
+        factory.products = [{
+          name: 'product name',
+          price: 'product price'
+        }];
+        factory.getProducts = function(callback){
+          // console.log('getProducts in factory');
+          // console.log('factory',factory);
+          callback(this.products);
+        }
+        factory.createProducts = function(newProduct){
+          factory.products.push(newProduct);
+        }
+        factory.destroyProducts = function(index){
+          factory.products.splice(index, 1);
+        }
+        return factory;
+      });
+
+      appModule.controller('productsController', function(productFactory){
+        var self = this;
+        console.log('initializing productsController; appModule:', appModule);
+        self.products = [];
+        self.getProducts = function(){
+          productFactory.getProducts(function(data){
+            // console.log('getProducts in controller');
+            // console.log('self: ', self)
+            self.products = data;
+            // console.log('self.products', self.products);
+          })
+        }
+        self.createProducts = function(){
+          console.log('createProducts in controller');
+          productFactory.createProducts(self.newProduct);
+          self.newProduct = {};
+        }
+        self.destroyProducts = function(index){
+          console.log('destroyProducts in controller');
+          productFactory.destroyProducts(index);
+        }
+      });
+
+    </script>
+  </head>
+  <body ng-controller='productsController as pC'>
+    <h1>Products Controller</h1>
+    <form ng-init="pC.getProducts()">
+      Product Name <input type="text" ng-model="pC.newProduct.name"><br>
+      Product Price <input type="text" ng-model="pC.newProduct.price"><br>
+      <input type="submit" value="Add Product" ng-click="pC.createProducts()">
+    </form>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in pC.products track by $index">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>
+            <form>
+              <input type="submit" value="Delete Product" ng-click="pC.destroyProducts($index)">
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
