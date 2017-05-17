@@ -19,6 +19,12 @@ https://codingdojo-dallas.slack.com/files/katemoc/F427ZQZPY/github_workflow_v4.p
 [MEAN - Intro to Express](https://youtu.be/4ZO_sndmY-E "MEAN - Intro to Express") <br>
 [MEAN - Socket.IO](https://youtu.be/MVpof70jUIM "MEAN - Socket.IO") <br>
 [MEAN - MongoDB & Mongoose ORM](https://youtu.be/ZKiclzvcOrk "MEAN - MongoDB & Mongoose ORM") <br>
+[MEAN - Modularizing Back-End Code](https://youtu.be/Y57YE33l7Uo "MEAN - Modularizing Back-End Code") <br>
+[MEAN - Intro to Angular](https://youtu.be/gsUdukuwfoY "MEAN - Intro to Angular") <br>
+[MEAN - Promises and Factories](https://youtu.be/t0u5dHoWb5Q "MEAN - Promises and Factories") <br>
+[MEAN - Products and Orders Demo](https://youtu.be/SYJ-73OEJLs "MEAN - Products and Orders Demo") <br>
+
+
 
 # Schedule
 
