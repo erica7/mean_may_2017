@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Controlling Users</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('userController', function(){
+        this.user = [];
+        this.addUser = function(){
+          console.log('add user function');
+          this.user.push({
+            first_name: this.user.first_name,
+            last_name: this.user.last_name,
+            favorite_language: this.user.favorite_language
+          });
+          this.user.first_name = "";
+          this.user.last_name = "";
+          this.user.favorite_language = "";
+        }
+        this.deleteUser = function(user_index){
+          console.log('delete user function');
+          this.user.splice(user_index, 1);
+        }
+      })
+    </script>
+  </head>
+  <body ng-controller="userController as uC">
+    <h1>Users Controller</h1>
+    <form>
+      First Name <input autofocus type="text" name="first_name" ng-model="uC.user.first_name"><br>
+      Last Name <input type="text" name="last_name" ng-model="uC.user.last_name"><br>
+      Favorite Language <input type="text" name="favorite_language" ng-model="uC.user.favorite_language"><br>
+      <input type="submit" value="Create User" ng-click="uC.addUser()">
+    </form>
+
+    <table>
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Favorite Language</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in uC.user track by $index">
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.favorite_language }}</td>
+          <td>
+            <form>
+              <input type="submit" value="Delete User" ng-click="uC.deleteUser($index)">
+            </form> ({{$index}})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

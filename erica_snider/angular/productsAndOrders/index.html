@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Products and Orders</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script>
+
+      var app = angular.module('app', []);
+
+      app.factory('productFactory', function(){
+        var factory = {};
+        factory.products = [
+          {
+            name: 'a product name',
+            price: 100,
+            quantity: 50
+          },
+          {
+            name: 'another product',
+            price: 44,
+            quantity: 145
+          },
+          {
+            name: 'a fine product',
+            price: 199,
+            quantity: 30
+          }
+        ];
+        factory.getProducts = function(callback){
+          callback(this.products);
+        }
+        factory.createProducts = function(newProduct){
+          newProduct.quantity = 50;
+          factory.products.push(newProduct);
+        }
+        factory.destroyProducts = function(index){
+          factory.products.splice(index, 1);
+        }
+        factory.buyProducts = function(index){
+          factory.products[index]['quantity']--;
+        }
+        return factory;
+      })
+
+      app.controller('productsController', function(productFactory){
+        var self = this;
+        self.products = [];
+        self.getProducts = function(){
+          productFactory.getProducts(function(data){
+            self.products = data;
+          })
+        }
+        self.createProducts = function(){
+          productFactory.createProducts(self.newProduct);
+          self.newProduct = {};
+        }
+        self.destroyProducts = function(index){
+          productFactory.destroyProducts(index);
+        }
+      })
+
+      app.controller('ordersController', function(productFactory){
+        var self = this;
+        self.products = [];
+        self.getProducts = function(){
+          productFactory.getProducts(function(data){
+            self.products = data;
+          })
+        }
+        self.buyProducts = function(index){
+          productFactory.buyProducts(index);
+        }
+      })
+
+    </script>
+  </head>
+  <body>
+    <div ng-controller="productsController as pC">
+      <h1 ng-init="pC.getProducts()">Products Controller</h1>
+      <form>
+        Product Name <input type="text" ng-model="pC.newProduct.name"><br>
+        Product Price <input type="text" ng-model="pC.newProduct.price"><br>
+        <input type="submit" value="Add Product" ng-click="pC.createProducts()">
+      </form>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in pC.products track by $index">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <form>
+                <input type="submit" value="Delete Product" ng-click="pC.destroyProducts($index)">
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-controller="ordersController as oC">
+      <h1 ng-init="oC.getProducts()">Order Controllers</h1>
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Qty Available</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="product in oC.products track by $index">
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>
+              <form>
+                <input type="submit" value="Buy" ng-click="oC.buyProducts($index)">
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
