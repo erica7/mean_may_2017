@@ -1,58 +1,21 @@
 var express = require('express')
 var app = express()
 var bp = require('body-parser')
-var mongoose = require('mongoose')
+var path = require('path')
 
 app.use(bp.urlencoded({extended: true}))
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(path.join(__dirname, './client/static')))
 app.use(express.static(__dirname + '/node_modules'))
 
-app.set('views', __dirname + '/views')
+app.set('views', path.join(__dirname, './client/views'))
 app.set('view engine', 'ejs')
 
-app.get('/', function(request, response){
-	response.render('index')
-})
+require('./server/config/mongoose.js')
 
-app.post('/quotes', function(request, response){
-	//add the quotes to the database
-	console.log(request.body)
-	var quote = new Quote(request.body)
-	quote.save(function(err, quote){
-		if(err){
-			console.log(err)
-		} else {
-			console.log(quote)
-		}
-	})
-	response.redirect('/')
-})
-
-app.get('/quotes', function(request, response){
-	Quote.find({}).sort({createdAt: 'desc'}).exec(function(err, quotes){
-		if(err){
-			console.log(err)
-			response.render('/errors')
-		} else {
-			console.log(quotes)
-			response.render('quotes', {'quotes': quotes})
-		}
-	})
-})
-
-
-
-//add mongoose and create db and collections
-mongoose.connect('mongodb://localhost/quoting_dojo')
-mongoose.Promise = global.Promise
-
-var QuoteSchema = new mongoose.Schema({
-	name: String,
-	quote: String
-}, {timestamps: true})
-
-mongoose.model('Quote', QuoteSchema)
-var Quote = mongoose.model('Quote')
+//store routes function in a variable 
+var routes_setter = require('./server/config/routes.js')
+//invoke routes_setter funciton and pass it the app variable
+routes_setter(app)
 
 
 app.listen(8000, function(){

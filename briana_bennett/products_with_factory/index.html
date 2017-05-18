@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+	<title>Products with Factory</title>
+	<script src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-controller="ProductsController">
+	<h1>Products Controller</h1>
+	<div>
+		<form>
+			Product Name:<input type="text" ng-model="newProduct.name">
+			Product Price:<input type="number" ng-model="newProduct.price">
+			<input type="submit" value="Add Product" ng-click="createProduct(newProduct)">
+		</form>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Actions</th>
+			</tr>
+			<tr ng-repeat="product in products | orderBy : 'price'">
+				<td>{{product.name}}</td>
+				<td>{{product.price | currency: $}}</td>
+				<td><button ng-click="deleteProduct(product)">Delete Product</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
