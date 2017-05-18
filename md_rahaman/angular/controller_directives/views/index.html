@@ -1,0 +1,59 @@
+<html ng-app='app'>
+<head>
+	<title>Controllers and directives</title>
+	<script src="../bower_components/angular/angular.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var myAppModule = angular.module('app', [])
+
+		myAppModule.controller('foodsController', function($scope){
+			$scope.foods = []
+		$scope.addFood = function(){
+			$scope.foods.push($scope.food)
+			$scope.food = ""
+		}
+		})
+
+	</script>
+</head>
+<body>
+	<h1>Controller and directives</h1>
+	<div ng-controller='foodsController'>
+		<div class="left">
+			<form ng-submit="addFood()">
+				<label>Favorite Food</label>
+				<input type="text" ng-model="food">
+				<input type="submit" value="add">
+			</form>
+			<p ng-if="food">
+				you are currently typing: {{food}}
+			</p>
+		</div>
+
+		<div class="right">
+			<h2><u>Food Stuff</u></h2>
+			<input placeholder="filter..." type="text" ng-model="foodFilter">
+			<div ng-repeat="food in foods|filter:foodFilter track by $index">
+				<p>{{food}}</p>
+		</div>
+
+		<div>
+			<button ng-click="count = count+1" ng-init="count=0">Increment</button>
+			<span>count:{{count}}</span>
+
+		</div>
+
+		<div>
+			Show: <input type="checkbox" ng-model="checked" aria-label="Toggle ngShow"><br />
+			<div class="check-element animate-show-hide" ng-show="checked">
+  				I show up when your checkbox is checked.
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+</body>
+</html>

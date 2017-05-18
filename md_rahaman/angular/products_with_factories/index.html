@@ -1,0 +1,63 @@
+<html ng-app='app'>
+	<head>
+		<title>Products with factories</title>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src='main.js'></script>
+	</head>
+
+	<body >
+		<div ng-controller='productController'>
+			<form ng-submit="create()">
+				<legend>Products Controller</legend>
+				<input type="text" ng-model = "product.name">
+				<input type="number" step="0.01" ng-model="product.price">
+				<input type="submit" value="Add product">
+			</form>
+			<table>
+		      <thead>
+		          <tr>
+		              <th>Name</th>
+		              <th>Price</th>
+		              <th>Actions</th>
+		          </tr>
+		      </thead>
+		      <tbody ng-repeat="product in products | orderBy: 'price' track by $index ">
+		        <tr>
+		          <td>{{product.name}}</td>
+		          <td>{{product.price | currency:"USD $"}}</td>
+		          <td><button ng-click = "delete($index)">Delete Product</button></td>
+		        </tr>
+		      </tbody>
+  			</table>
+		</div>
+
+		  <div ng-controller='ordersController'>
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>Name</th>
+		                <th>Price</th>
+		                <th>Quantity</th>
+		                <th>Actions</th>
+		            </tr>
+		        </thead>
+		        <tbody ng-repeat="product in products | orderBy: 'price' track by $index ">
+		            <tr>
+		                <td>{{product.name}}</td>
+		                <td>{{product.price | currency:"USD $"}}</td>
+		                <td> {{product.quantity}} </td>
+		                <td>
+		                    <button ng-click="update($index)">Buy Product</button>
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+    	</div>
+
+
+
+
+
+	</body>
+</html>

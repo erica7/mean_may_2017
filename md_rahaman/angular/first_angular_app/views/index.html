@@ -1,0 +1,22 @@
+<html ng-app="app">
+	<head>
+		<title>First angular app</title>
+		<script src="../bower_components/angular/angular.js" charset="utf-8"></script>
+		<script>
+			var app=angular.module('app',[]);
+			app.controller('divController', ['$scope', function($scope){
+				$scope.myName = 'Mike';
+				$scope.myFavoriteLanguage = 'Js'
+			}])
+
+		</script>
+	</head>
+
+	<body>
+		<div ng-controller="divController">
+			<p>Hello, my name is: {{myName}}</p>
+			<p>hello my name is : <span ng-bind="myName"></span></p>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>user  list</title>
+</head>
+<body>
+	<h2>usr</h2>
+	<div>
+		<table ng-init='getUsers()'>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Fav Name</th>
+			</tr>
+			<tr ng-repeat="user in users">
+				<td>{{user.first_name}}</td>
+				<td>{{user.last_name}}</td>
+				<td>{{user.fav_lang}}</td>
+			</tr>
+		</table>
+
+
+	</div>
+
+</body>
+</html>

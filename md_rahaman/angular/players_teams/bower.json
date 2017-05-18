@@ -1,0 +1,17 @@
+{
+  "name": "players_teams",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Md Rahaman <soikatesc@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/soikatesc/MEAN-Stack",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
