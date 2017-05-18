@@ -1,0 +1,17 @@
+<a href="#!/users">Customize Users</a>
+<a href="#!/list">User List</a>
+<h1 ng-init="CUC.index()">User List</h1>
+<table>
+  <thead>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Favorite Language</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in CUC.users track by $index">
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.favorite_language }}</td>
+    </tr>
+  </tbody>
+</table>
