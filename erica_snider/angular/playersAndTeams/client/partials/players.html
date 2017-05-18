@@ -1,0 +1,17 @@
+<h1 ng-init='PC.index()'>Players</h1>
+<form>
+  Name: <input type="text" ng-model="PC.newPlayer.name">
+  <input type="submit" value="Add Player" ng-click="PC.createPlayer(PC.newPlayer)">
+</form>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="player in PC.players track by $index">
+      <td>{{ player.name }}</td>
+      <td><button ng-click="PC.destroyPlayer(player)">Remove Player</button></td>
+    </tr>
+  </tbody>
+</table>

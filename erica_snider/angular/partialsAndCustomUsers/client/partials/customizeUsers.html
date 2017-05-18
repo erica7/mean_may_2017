@@ -1,0 +1,27 @@
+<a href="#!/users">Customize Users</a>
+<a href="#!/list">User List</a>
+<h1 ng-init="CUC.index()">Customize Users</h1>
+<form>
+  First Name <input type="text" ng-model="CUC.newUser.first_name"><br>
+  Last Name <input type="text" ng-model="CUC.newUser.last_name"><br>
+  Favorite Language <input type="text" ng-model="CUC.newUser.favorite_language"><br>
+  <input type="submit" value="Create User" ng-click="CUC.createUser(CUC.newUser)">
+</form>
+<br>
+<br>
+<table>
+  <thead>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Favorite Language</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in CUC.users track by $index">
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.favorite_language }}</td>
+      <td><button ng-click="CUC.destroyUser(user)">Delete User</button></td>
+    </tr>
+  </tbody>
+</table>
