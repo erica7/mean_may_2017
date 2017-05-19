@@ -1,0 +1,17 @@
+<h1>User Index</h1>
+<div ng-init="iC.usersIndex()">
+
+  <div ng-repeat="user in iC.users track by $index">
+    <p>Name: {{user.name}}
+      <button ng-click = "iC.show($index)">
+        Edit User
+      </button>
+    </p>
+  </div>
+  <a ng-href = '#!/new'>
+    <button>
+      Create User
+    </button>
+  </a>
+
+</div>
