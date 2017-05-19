@@ -17,11 +17,11 @@
       <input type="submit" value="Post message">
     </form>
     <br />
-    <% for (i in posts) { %>
+    <% for (var i = 0; i < posts.length; i++) { %>
       <h3>Name: <%= posts[i].name %></h3>
       <h3>Message: <%= posts[i].text %></h3>
       <br />
-      <% for (j in posts[i]._comments) { %>
+      <% for (var j = 0; j < posts[i]._comments.length; j++) { %>
 				<h5>Name: <%= posts[i]._comments[j].name %></h5>
 				<h5>Comment: <%= posts[i]._comments[j].text %></h5>
 			<% } %>
