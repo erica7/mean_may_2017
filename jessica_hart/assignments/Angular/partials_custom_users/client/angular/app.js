@@ -44,7 +44,7 @@ app.factory('userFactory', function() {
   return factory
 })
 
-app.controller('CustomizeUsersController', function(userFactory) {
+app.controller('CustomizeUsersController', function(userFactory, $location) {
   console.log('Initializing CustomizeUsersController')
   var self = this
   self.userList = []
@@ -59,6 +59,7 @@ app.controller('CustomizeUsersController', function(userFactory) {
     userFactory.create(newUser, function() {
       self.getUsers()
       self.newUser = {}
+      $location.url('/list')
     })
   }
 
