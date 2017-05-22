@@ -1,15 +1,19 @@
 app.controller('UsersController', function(UserFactory, $cookies, $location){
 	console.log('initializing UsersController...');
 	var self = this;
+	self.current_user = {};
 	self.registration_errors = [];
 	self.login_errors = [];
 
 	self.session = function(){
-		var state = UserFactory.session();
-		console.log(state);
-		if(!state){
-			$location.url('/')
-		}
+		UserFactory.session(function(user){
+			console.log('user: ', user);
+			if(user){
+				self.current_user = user;
+			} else {
+				$location.url('/');
+			}
+		})
 	}
 
 	self.logout = function(){

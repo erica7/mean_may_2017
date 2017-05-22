@@ -38,6 +38,19 @@ module.exports = {
 				}
 			})
 		})
+	},
+	show: function(req, res){
+		User.findById(req.params.id, function(err, user){
+			if(err){
+				return res.json(err);
+			}
+			if(!user){
+				return res.json({
+					"errors": "404 - User not found!"
+				})
+			}
+			return res.json(user);
+		})
 	}
 }
 
