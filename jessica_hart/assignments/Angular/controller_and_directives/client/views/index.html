@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Controller and Directives</title>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-controller="foodController">
+    <p>
+      Favorite Food
+      <form ng-submit="submit()">
+        <input type="text" ng-model="food" name="food" />
+        <input type="submit" name="Submit" />
+      </form>
+      <br />
+      <div ng-init="getFood()">
+        <input type="text" ng-model="foodFilter" placeholder="filter..." />
+        <span ng-repeat="food in list | filter: foodFilter track by $index">
+          {{ food }} - {{ $index }}
+          <a ng-click="destroy(food)" href="#">Remove</a>,
+        </span>
+      </div>
+    </p>
+    <p>Currently typing: {{ food }}</p>
+    <p>Currently typing (ng-bind): <span ng-bind="food">This gets replaced instantly</span></p>
+    <hr />
+    <p>
+      <button ng-click="changeState()">Change State</button>
+      <span ng-if="state === true">Conditional</span>
+    </p>
+    <p>
+      <input type="checkbox" ng-model="hideChecked">
+      <span ng-hide="hideChecked">Check to hide</span>
+    </p>
+    <p>
+      <input type="checkbox" ng-model="showChecked">
+      <span ng-show="showChecked">Check to reveal</span>
+    </p>
+  </body>
+</html>
