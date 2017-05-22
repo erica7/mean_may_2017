@@ -1,0 +1,21 @@
+{
+  "name": "practice_routes",
+  "homepage": "https://github.com/timber-modistette/Coding-Dojo",
+  "authors": [
+    "timber <mister.modistette@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4"
+  }
+}
