@@ -1,0 +1,32 @@
+
+
+
+
+<div ng-controller="AssociationsController as AC">
+	<form ng-submit='AC.AddPlayerToTeam(AC.newAssociation)'>
+		<label ng-init='AC.getPlayers()'>Player: 
+		<select ng-model='AC.newAssociation.player'>
+			<option ng-repeat='player in AC.players' ng-value="{{player}}">{{player.name}}</option>
+		</select>
+		</label>
+		<label ng-init="AC.getTeams()">Team: 
+			<select ng-model="AC.newAssociation.team">
+				<option ng-repeat="team in AC.teams" ng-value="{{team}}">{{team.name}}</option>
+			</select>
+		</label>
+		<input type="submit" value="Assign Player to Team">
+	</form>
+	<div>
+		<table>
+			<tr>
+				<th>Player Name</th>
+				<th>Player Team</th>
+			</tr>
+			<tr ng-repeat="player in AC.players" ng-if="player.team">
+				<td>{{player.name}}</td>
+				<td>{{player.team.name}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+		

@@ -1,0 +1,26 @@
+<style type="text/css">
+	form {
+		margin-top: 50px;
+	}
+	body {
+		padding: 50px;
+	}
+</style>
+<div ng-controller="PlayerController as PC">
+	<div>
+		<form ng-submit="PC.createPlayer(PC.player)">
+			<label>Name: <input type="text" ng-model="PC.player.name"></label>
+			<input type="submit" value="Add Player">
+		</form>
+		<table ng-init="PC.getPlayers()">
+			<tr>
+				<th>Name</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="player in PC.players">
+				<td>{{player.name}}</td>
+				<td><button ng-click="PC.removePlayer(player)">Remove Player</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
