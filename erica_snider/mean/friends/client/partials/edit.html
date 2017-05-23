@@ -1,0 +1,21 @@
+<h1 ng-init="FC.show()">Update {{ FC.friend.first_name }}</h1>
+
+<ul>
+  <li ng-repeat='error in FC.errors'>{{error}}</li>
+</ul>
+<br>
+<br>
+<h3>Current information</h3>
+<p><b>First name</b> {{ FC.friend.first_name }}</p>
+<p><b>Last name</b> {{ FC.friend.last_name }}</p>
+<p><b>Birthday</b> {{ FC.friend.birthday | date:'yyyy-MM-d' }}</p>
+<p><b>Date added</b> {{ FC.friend.createdAt | date:'yyyy-MM-d' }}</p>
+<p><b>Last updated</b> {{ FC.friend.updatedAt | date:'yyyy-MM-d' }}</p>
+
+<h3>Update</h3>
+<form ng-submit="FC.update(friend)">
+  First name <input type="text" ng-model="friend.first_name"><br>
+  Last name <input type="text" ng-model="friend.last_name"><br>
+  Birthday <input type="date" ng-model="friend.birthday"><br>
+  <input type="submit" value="Update">
+</form>
