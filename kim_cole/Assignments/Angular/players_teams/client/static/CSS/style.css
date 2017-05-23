@@ -1,0 +1,17 @@
+table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td, th {
+    border: 1px solid #CCC;
+}
+input {
+    display: inline-block;
+}
+
+body {
+	border: 2px solid black;
+	width: 40%;
+}
