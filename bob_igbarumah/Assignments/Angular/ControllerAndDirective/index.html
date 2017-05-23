@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src = 'bower_components/angular/angular.js'></script>
+    <script>
+    var myApp = angular.module('myApp',[]);
+    myApp.controller('foodController',['$scope', function($scope){
+
+         $scope.foods = [];
+       $scope.addFood = function (){
+
+     $scope.foods.push($scope.food);
+     // clear the form values
+           $scope.food = "";
+       }
+    }]);
+    </script>
+    <title></title>
+  </head>
+  <body>
+    <div ng-controller = "foodController">
+      <form>
+        Favorite food:<input type="text" ng-model = 'food'>
+        <input type='submit' value='add Food' ng-click='addFood()'>
+      </form>
+      <p ng-if ="food">
+         currently typing: {{food}}
+      </p>
+
+      <div class="">
+               <h2><u>Food Stuff</u></h2>
+               <input placeholder="filter..." type="text" ng-model="foodFilter">
+               <div ng-repeat="food in foods | filter:foodFilter track by $index">
+                   <p>{{food}}</p>
+               </div>
+           </div>
+
+   </div>
+
+
+
+    </div>
+
+  </body>
+</html>
