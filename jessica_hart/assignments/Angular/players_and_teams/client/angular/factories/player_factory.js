@@ -7,8 +7,8 @@ app.factory('playerFactory', function() {
     {name: 'Chen Hui Chung', team: null},
     {name: 'Evgeny Mazaev', team: null},
     {name: 'Alexey Ichetovkin', team: null},
-    {name: 'Song Kyung-ho', team: null},
-    {name: 'Kang Beom-hyeon', team: null}
+    {name: 'Song Kyung-ho', team: {name: 'KT Rolster'}},
+    {name: 'Kang Beom-hyeon', team: {name: 'GorillA'}}
   ]
 
   factory.index = function(callback) {
@@ -43,6 +43,16 @@ app.factory('playerFactory', function() {
       }
     }
     callback()
+  }
+
+  factory.showPlayer = function(playerName, callback) {
+    for (var i = 0; i < this.players.length; i++) {
+      if (this.players[i].name === playerName) {
+        callback(this.players[i])
+        return
+      }
+    }
+    callback(false)
   }
 
   return factory

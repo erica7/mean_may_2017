@@ -1,4 +1,4 @@
-app.controller('PlayersController', function(playerFactory) {
+app.controller('PlayersController', function(playerFactory, $routeParams, $location) {
   var self = this
 
   self.index = function() {
@@ -17,6 +17,16 @@ app.controller('PlayersController', function(playerFactory) {
   self.delete = function(player) {
     playerFactory.delete(player, function() {
       self.index()
+    })
+  }
+
+  self.show = function() {
+    playerFactory.showPlayer($routeParams.name, function(player) {
+      if (player !== false) {
+        self.player = player
+      } else {
+        $location.url('/players')
+      }
     })
   }
 })
