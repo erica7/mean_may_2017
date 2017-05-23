@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+
+    <script>
+    var app = angular.module('myApp', ['ngRoute']);
+
+    app.config(function($routeProvider){
+      $routeProvider
+          .when('/users',{
+
+            templateUrl: 'static/partials/customizeUsers.html',
+          })
+          .when('/list',{
+          templateUrl :'static/partials/usersList.html',
+
+          })
+          .otherwise({
+            redirectTo: '/users'
+          });
+    })
+
+    app.factory('UserFactory',function(){
+       var factory = {};
+       var users = [];
+
+       factory.create = function(newUser,callback){
+         console.log('creating shit');
+         users.push(newUser);
+         callback();
+       }
+       factory.getUsers = function(callback){
+         console.log('all users');
+         callback(users);
+       }
+       factory.remove = function(index,callback){
+         console.log('delete in motion');
+         users.splice(index,1);
+       }
+        return factory;
+    })
+
+    app.controller('UsersListController', function(UserFactory,$scope,$location){
+
+         $scope.users = [];
+         //$scope.getUsers();
+         console.log('got to user controllers');
+
+      $scope.getUsers = function(){
+        console.log('getting users in user controllers');
+        UserFactory.getUsers(function(users){
+          console.log('getting users');
+          $scope.users = users;
+          console.log(users);
+        })
+      }
+
+         $scope.getUsers();
+    })
+
+    app.controller('CustomizeUsersController',function($scope,UserFactory,$location){
+      $scope.users = [];
+
+        console.log("got here");
+      $scope.addUser = function(newUser){
+         console.log("in here");
+         UserFactory.create(newUser,function(){
+           console.log('already created');
+           $scope.getUsers();
+           console.log('created and got');
+           $scope.newUser ={};
+           $location.url('/list');
+         })
+
+      }
+
+      $scope.getUsers = function(){
+        console.log('getting users');
+        UserFactory.getUsers(function(users){
+          console.log('getting users');
+          $scope.users = users;
+        })
+      }
+
+           $scope.getUsers();
+      $scope.remove = function(index){
+          console.log('about to delete');
+        //var user = $scope.users.indexOf(index);
+        UserFactory.remove(index,function(){
+          console.log('finally deleted');
+        })
+
+  
+      }
+
+
+    });
+
+
+    </script>
+    <title></title>
+  </head>
+  <body>
+    <div ng-app='myApp'>
+      <a href="#!/users">Customize Users</a>|<a href="#!/list">usersList</a>
+      <div ng-view="">
+      </div>
+    </div>
+
+
+
+  </body>
+</html>

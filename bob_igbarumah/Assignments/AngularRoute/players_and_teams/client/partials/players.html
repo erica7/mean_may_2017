@@ -1,0 +1,31 @@
+<div ng-init='PC.index()'>
+   <form name='playerForm'>
+     Name:<input type="text" name='name' ng-model='PC.newPlayer.name' minlength='4' required>
+     <input type="submit"  value='Add Player' ng-click='PC.addPlayer(PC.newPlayer)'>
+
+     <div ng-messages='playerForm.name.$error'>
+       <p ng-messages='minlength'>The player name is too short</p>
+
+       <p ng-messages='required'>The player name is required</p>
+     </div>
+
+   </form>
+
+
+
+
+
+   <table>
+     <tr>
+       <thead>
+         <td>Name</td>
+         <td>Actions</td>
+       </thead>
+     </tr>
+
+     <tr ng-repeat='player in PC.players track by $index'>
+       <td><a href="/#!players/{{player.name}}" >{{player.name}}</a></td>
+       <td><button ng-click='PC.remove($index)'>Remove Player</button></td>
+     </tr>
+   </table>
+</div>
