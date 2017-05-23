@@ -15,6 +15,10 @@ app.controller('MessagesController', function(UserFactory, MessageFactory, Comme
 	}
 
 	self.createComment = function(newComment, index, message_id){
+		self.new_comment_errors = {};
+		if(!newComment[index]){
+			newComment[index] = {};
+		}
 		newComment = newComment[index];
 		newComment.message = message_id
 		UserFactory.session(function(user){
@@ -22,7 +26,11 @@ app.controller('MessagesController', function(UserFactory, MessageFactory, Comme
 			CommentFactory.create(newComment, function(res){
 				self.newComment = {};
 				if(res.data.errors){
-
+					self.new_comment_errors[index]= [];
+					for(key in res.data.errors){
+						var error = res.data.errors[key];
+						self.new_comment_errors[index].push(error.message);
+					}
 				} else {
 					self.index();
 				}
