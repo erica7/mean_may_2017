@@ -1,0 +1,5 @@
+<div ng-controller="PlayerController as PC">
+	<h1 ng-init="PC.showPlayer()"></h1>
+	<h1>{{PC.player.name}}</h1>
+	<h3 ng-if="PC.player.team != null">I play for the {{PC.player.team.name}}</h3>
+</div>

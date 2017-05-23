@@ -1,0 +1,34 @@
+<style type="text/css">
+	form {
+		margin-top: 50px;
+	}
+	body {
+		padding: 50px;
+	}
+</style>
+<div ng-controller="PlayerController as PC">
+	<div>
+		<form name="playerForm" ng-submit="PC.createPlayer(PC.player)">
+			<label>Name: <input type="text" name="name" ng-model="PC.player.name"  minlength='4' required></label>
+			<input type="submit" value="Add Player">
+		</form>
+		<div ng-messages='playerForm.name.$error'>
+			<p ng-message="minlength">The player name is too short.</p>
+    		<p ng-message="required">The player name is required.</p>
+		</div>
+
+			
+		<table ng-init="PC.getPlayers()">
+			<tr>
+				<th>Name</th>
+				<th>Player Page</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="player in PC.players">
+				<td>{{player.name}}</td>
+				<td><a href="#!/players/{{player.name}}">Player Page</a></td>
+				<td><button ng-click="PC.removePlayer(player)">Remove Player</button></td>
+			</tr>
+		</table>
+	</div>
+</div>
