@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script src="config.js"></script>
+    <script src="controllers/FriendsController.js"></script>
+    <script src="factories/friendFactory.js"></script>
+  </head>
+  <body>
+    <a href="/">Home</a>
+
+    <div ng-controller="FriendsController as FC">
+      FC.errors: {{FC.errors}}
+      <ul>
+        <li ng-repeat='error in FC.errors'>{{error}}</li>
+      </ul>
+    </div>
+
+    <br>
+
+    <div ng-view>
+    </div>
+
+  </body>
+</html>
