@@ -1,0 +1,12 @@
+.float_right{
+	float: right;
+}
+.inline_block{
+	display: inline-block;
+}
+.error{
+	color: red;
+}
+.left_indent{
+	margin-left: 5%;
+}
