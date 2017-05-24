@@ -1,0 +1,26 @@
+<div ng-controller="MessagesController as MC">
+  <div >
+    <div ng-init="UC.check(); MC.index();">
+      <a href="#" ng-click="UC.logout()">Log Out</a>
+      <h1>Welcome {{ UC.currentUser.first_name }}</h1>
+      <form ng-submit="MC.create(MC.newMessage)">
+        <div><label>Post a message:</label></div>
+        <textarea rows="8" cols="80" ng-model="MC.newMessage.message"></textarea><br>
+        <input type="submit" value="Post a message">
+      </form>
+      <div ng-repeat="message in MC.messages track by $index">
+        <h3>Message by {{ message.user.first_name }} at {{ message.createdAt | date:'h:mm a M-d-yyyy' }}</h3>
+        <p>{{ message.message }}</p>
+        <div ng-repeat="comment in message.comments">
+          <h4>Comment by {{ comment.user.first_name }} at {{ comment.createdAt | date:'h:mm a M-d-yyyy' }}</h4>
+          <p>{{ comment.comment }}</p>
+        </div>
+        <form ng-submit="MC.createComment(message._id, MC.newComment[$index])">
+          <div><label>Post a comment:</label></div>
+          <textarea rows="4" cols="50" ng-model="MC.newComment[$index].comment"></textarea><br>
+          <input type="submit" value="Post a comment">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
