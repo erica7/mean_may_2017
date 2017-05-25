@@ -40,7 +40,7 @@ module.exports = {
 		})
 	},
 	show: function(req, res){
-		User.findById(req.params.id, function(err, user){
+		User.findById(req.params.id).populate('messages comments').exec(function(err, user){
 			if(err){
 				return res.json(err);
 			}
@@ -50,6 +50,19 @@ module.exports = {
 				})
 			}
 			return res.json(user);
+		})
+	},
+	destroy: function(req, res){
+		User.findById(req.params.id, function(err, user){
+			if(err){
+				return res.json(err);
+			}
+			user.remove(function(err, user){
+				if(err){
+					return res.json(err);
+				}
+				return res.json(user);
+			})
 		})
 	}
 }

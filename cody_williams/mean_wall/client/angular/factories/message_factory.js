@@ -7,6 +7,12 @@ app.factory('MessageFactory', function($http){
 	factory.index = function(callback){
 		$http.get('/messages').then(callback);
 	}
+	factory.destroy = function(id, callback){
+		$http.delete('/messages/' + id).then(callback);
+	}
+	factory.updateLikes = function(message_id, user_id, callback){
+		$http.put('/messages/' + message_id + '/likes', { user: user_id }).then(callback);
+	}
 
 	return factory;
 })

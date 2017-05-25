@@ -10,3 +10,11 @@
 .left_indent{
 	margin-left: 5%;
 }
+.header{
+	padding: 1em;
+}
+.header_item{
+	margin: 0 .5em;
+	vertical-align: top;
+	box-sizing: border-box;
+}

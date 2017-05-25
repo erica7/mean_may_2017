@@ -14,6 +14,23 @@ app.controller('MessagesController', function(UserFactory, MessageFactory, Comme
 		})
 	}
 
+	self.updateCommentLikes = function(comment_id, user_id){
+		console.log('here');
+		CommentFactory.updateLikes(comment_id, user_id, self.index);
+	}
+
+	self.updateLikes = function(message_id, user_id){
+		MessageFactory.updateLikes(message_id, user_id, self.index);
+	}
+
+	self.destroy = function(message_id){
+		MessageFactory.destroy(message_id, self.index);
+	}
+
+	self.destroyComment = function(comment_id){
+		CommentFactory.destroy(comment_id, self.index);
+	}
+
 	self.createComment = function(newComment, index, message_id){
 		self.new_comment_errors = {};
 		if(!newComment[index]){
@@ -54,6 +71,4 @@ app.controller('MessagesController', function(UserFactory, MessageFactory, Comme
 			})
 		})
 	}
-
-
 })

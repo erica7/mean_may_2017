@@ -18,29 +18,53 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
-			Message.findById(req.body.message, function(err, message){
+			Message.findByIdAndUpdate(req.body.message, { $push: { comments: comment._id }}, function(err, message){
 				if(err){
 					return res.json(err);
 				}
-				message.comments.push(comment._id);
-				message.save(function(err, message){
+				User.findByIdAndUpdate(req.body.user, { $push : { comments: comment._id }}, function(err, user){
 					if(err){
 						return res.json(err);
 					}
-					User.findById(req.body.user, function(err, user){
-						if(err){
-							return res.json(err);
-						}
-						user.comments.push(comment._id);
-						user.save(function(err, user){
-							if(err){
-								return res.json(err);
-							}
-							return res.json(comment);
-						})
-					})
+					return res.json(comment);
 				})
 			})
 		})
+	},
+	show: function(req, res){
+		Comment.findById(req.params.id, function(err, comment){
+			if(err){
+				return res.json(err)
+			}
+			return res.json(comment);
+		})
+	},
+	destroy: function(req, res){
+		Comment.findById(req.params.id, function(err, comment){
+			if(err){
+				return res.json(err);
+			}
+			comment.remove(function(err, comment){
+				if(err){
+					return res.json(err);
+				}
+				return res.json(comment);
+			})
+		})
+	},
+	updateLikes: function(req, res){
+		console.log(req.body)
+		Comment.findByIdAndUpdate(req.params.id, { $inc : { "likes.count" : 1 }, $push: { "likes.users": req.body.user }}, { new: true }, function(err, comment){
+			if(err){
+				return res.json(err);
+			}
+			return res.json(comment);
+		})
 	}
 };
+
+
+
+
+
+

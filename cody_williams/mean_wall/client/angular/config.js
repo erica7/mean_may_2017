@@ -10,5 +10,9 @@ app.config(function($routeProvider){
 		templateUrl: 'partials/dashboard.html',
 		controller: 'UsersController as UC'
 	})
+	.when('/users/:id', {
+		templateUrl: 'partials/users_show.html',
+		controller: 'UsersController as UC'
+	})
 	.otherwise({ redirectTo: '/' });
 })
