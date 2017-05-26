@@ -1,0 +1,32 @@
+CS
+controllers
+  Products
+  Orders
+  Customers
+factory
+  product
+  order
+  customer
+
+routes
+  /           template: dashboard.html
+  /products   template: products.html
+  /orders     template: orders.html
+  /customers  template: customers.html
+
+
+SS
+controllers
+  Products
+  Orders
+  Customers
+
+models
+  Products
+  Orders
+  Customers
+
+routes
+  products restful
+  orders restful
+  customers restful

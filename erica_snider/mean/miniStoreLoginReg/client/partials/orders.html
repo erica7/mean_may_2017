@@ -1,0 +1,53 @@
+<div ng-controller="OrdersController as OC">
+  <div ng-controller="CustomersController as CC">
+    <div ng-controller="ProductsController as PC">
+
+
+      <a href="#" ng-click="UC.logout()">Log Out</a>
+      <hr>
+      
+      <ul ng-init="UC.check(); OC.index(); CC.index(); PC.index()">
+        <li ng-repeat='error in OC.errors'>{{error}}</li>
+      </ul>
+
+      <form ng-submit="OC.create(OC.newOrder)">
+        <p>Add a New Order</p>
+        Customer:
+        <select ng-model="OC.newOrder.customer">
+          <option ng-repeat="customer in CC.customers" value="{{ customer._id }}">{{ customer.name }}</option>
+        </select><br>
+        Product:
+        <select ng-model="OC.newOrder.product">
+          <option ng-repeat="product in PC.products" value="{{ product._id }}">{{ product.name }}</option>
+        </select><br>
+        Quantity: <input type="number" ng-model="OC.newOrder.quantity"><br>
+        <input type="submit" value="Order">
+      </form>
+      <hr>
+      <br>
+
+      <label>Filter all: <input type="text" ng-model="filterName.$"></label><br>
+      <label>Filter name: <input type="text" ng-model="filterName.customer.name"></label><br>
+      <label>Filter product: <input type="text" ng-model="filterName.product.name"></label><br>
+      <br>
+
+      <table>
+        <thead>
+          <th>Customer Name</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="order in OC.orders | filter:filterName:strict">
+            <td>{{ order.customer.name }}</td>
+            <td>{{ order.product.name }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.createdAt | date: 'mediumDate' }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
